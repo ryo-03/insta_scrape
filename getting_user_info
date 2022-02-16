@@ -1,0 +1,45 @@
+import pandas as pd
+from instagramy.plugins.analysis import analyze_users_popularity
+import csv
+from csv import writer
+
+session_id = "48518332961%3AolhMDqbEyYKCzp%3A11"
+
+with open('follower_url.csv', newline='') as fi:
+    reader1 = csv.reader(fi)
+    lst_1 = list(reader1) #list of username and photo URL
+
+
+
+with open('follower_lists.csv', newline='') as f:
+    reader2 = csv.reader(f)
+    li_2 = list(reader2)
+lst_2 = sum(li_2, []) 
+print("analyzing data...")
+user_names = lst_2
+data = analyze_users_popularity(user_names, session_id)
+print(data)
+print("converting to values...")
+df = pd.DataFrame(data, columns = ['Usernames', 'Followers', 'Following', 'Posts'])
+data_list = df.values.tolist() #list of username, followers, following, posts
+
+
+final_list = []
+
+for i in range(len(data_list)):
+    if 500 <= data_list[i][1] <= 30000:
+        for n in range(len(lst_1)):
+            if lst_1[n][0] == data_list[i][0]:
+                all_list = []
+                all_list.append(data_list[i][0])
+                all_list.append(data_list[i][1])
+                all_list.append(lst_1[n][1])
+                
+                final_list.append(all_list)
+
+
+
+with open('follower_data.csv', 'a+', newline='') as write_obj:
+    csv_writer = writer(write_obj)
+    for i in range(len(final_list)):
+        csv_writer.writerow(final_list[i])
