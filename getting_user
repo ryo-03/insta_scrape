@@ -19,7 +19,7 @@ import requests
 import csv
 
 #Input username of the account you want to scrape from here
-account_list = ['-------','--------','--------'] # list of accounts you want to scrape
+account_list = ['-------','--------','--------'] #### list of accounts you want to scrape ####
 
 lst = []
 
