@@ -31,10 +31,10 @@ driver.get('https://www.instagram.com')
 sleep(2)
 
 username_el = driver.find_element_by_name("username")
-username_el.send_keys("kidarc@usbc.be")
+username_el.send_keys("-----------") #### Input your username or email ####
 time.sleep(0.5)
 password_el = driver.find_element_by_name("password")
-password_el.send_keys("boblolinstagram")
+password_el.send_keys("-----------") #### Input your password for your account ####
 sleep(0.5)
 
 submit_btn_el = driver.find_element_by_css_selector("button[type='submit']")
